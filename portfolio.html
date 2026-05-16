@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maheen Unzeelah — Portfolio</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── CSS Variables ──────────────────────────────────────── */
+    :root {
+      --accent: #F9629F;
+      --accent-dim: rgba(249,98,159,0.12);
+      --link: #1A73E8;
+    }
+
+    [data-theme="dark"] {
+      --bg:        #0f0f13;
+      --bg-card:   #18181f;
+      --bg-sidebar:#13131a;
+      --border:    #2a2a35;
+      --text:      #e8e8f0;
+      --text-muted:#8888a0;
+      --nav-hover: #1e1e28;
+      --tag-bg:    #1e1e2f;
+      --scrollbar-bg: #000000;
+      --scrollbar-color: #F9629F;
+      --scrollbar-hover: #fcaecd;
+    }
+
+    [data-theme="light"] {
+      --bg:        #f5f5f8;
+      --bg-card:   #ffffff;
+      --bg-sidebar:#eeeff5;
+      --border:    #dddde8;
+      --text:      #1a1a2e;
+      --text-muted:#6b6b80;
+      --nav-hover: #e4e4ee;
+      --tag-bg:    #e8e8f5;
+      --scrollbar-bg: #ffffff;
+      --scrollbar-color: #fcaecd;
+      --scrollbar-hover: #F9629F;
+    }
+
+    /* ── Base ───────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      font-size: 15px;
+      line-height: 1.7;
+      transition: background 0.25s, color 0.25s;
+    }
+
+    ::-webkit-scrollbar {
+  width: 10px;  
+}
+
+/* Style the track */
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-bg);
+  border-radius: 10px;
+}
+
+/* Style the thumb */
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-color);
+  border-radius: 10px;
+  border: 2px solid var(--scrollbar-bg); /* Creates padding around the thumb */
+}
+
+/* Thumb hover effect */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-hover);
+}
+    h1,h2,h3,h4 { font-family: 'DM Serif Display', serif; }
+    a { color: var(--link); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── Layout ─────────────────────────────────────────────── */
+    .shell { display: flex; min-height: 100vh; }
+
+    /* ── Sidebar ─────────────────────────────────────────────── */
+    .sidebar {
+      width: 260px;
+      flex-shrink: 0;
+      background: var(--bg-sidebar);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      padding: 2rem 0 1.5rem;
+    }
+
+    .sidebar-profile {
+      padding: 0 1.5rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .avatar-ring {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--link));
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.8rem; color: #fff;
+      margin-bottom: 0.9rem; flex-shrink: 0;
+    }
+
+    .sidebar-name { font-size: 1.05rem; font-weight: 600; line-height: 1.3; margin-bottom: 0.2rem; }
+    .sidebar-tagline { font-size: 0.78rem; color: var(--text-muted); line-height: 1.4; }
+
+    .sidebar-links {
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex; flex-direction: column; gap: 0.4rem;
+    }
+
+    .sidebar-links a {
+      font-size: 0.8rem; color: var(--text-muted);
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .sidebar-links a:hover { color: var(--accent); text-decoration: none; }
+
+    .sidebar-nav { padding: 1rem 0; flex: 1; }
+
+    .nav-item-btn {
+      display: flex; align-items: center; gap: 0.65rem;
+      width: 100%; padding: 0.55rem 1.5rem;
+      border: none; background: none;
+      color: var(--text-muted);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem; cursor: pointer;
+      text-align: left; border-left: 3px solid transparent;
+    }
+    .nav-item-btn:hover { background: var(--nav-hover); color: var(--text); }
+    .nav-item-btn.active {
+      color: var(--accent); border-left-color: var(--accent);
+      background: var(--accent-dim); font-weight: 600;
+    }
+    .nav-item-btn i { width: 16px; text-align: center; font-size: 0.8rem; }
+
+    .sidebar-footer { padding: 1rem 1.5rem 0; border-top: 1px solid var(--border); }
+
+    /* ── Theme Toggle ────────────────────────────────────────── */
+    .theme-toggle { display: flex; align-items: center; gap: 0.5rem; font-size: 0.78rem; color: var(--text-muted); }
+
+    .toggle-track {
+      width: 38px; height: 20px; border-radius: 10px;
+      background: var(--border); position: relative;
+      cursor: pointer; border: none; outline: none; transition: background 0.2s;
+    }
+    [data-theme="light"] .toggle-track { background: var(--accent); }
+
+    .toggle-thumb {
+      width: 14px; height: 14px; border-radius: 50%; background: #fff;
+      position: absolute; top: 3px; left: 3px; transition: transform 0.2s;
+    }
+    [data-theme="light"] .toggle-thumb { transform: translateX(18px); }
+
+    /* ── Main Content ────────────────────────────────────────── */
+    .main {
+      flex: 1; overflow-y: auto;
+      padding: 2.5rem 2rem 4rem; max-width: 900px;
+    }
+
+    .section-panel { display: none; }
+    .section-panel.active { display: block; }
+
+    /* ── Section Headings ────────────────────────────────────── */
+    .section-title { font-size: 1.7rem; margin-bottom: 0.3rem; }
+    .section-divider {
+      height: 3px; width: 48px; background: var(--accent);
+      border-radius: 2px; margin-bottom: 2rem;
+    }
+
+    /* ── Cards ───────────────────────────────────────────────── */
+    .card-block {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1.4rem 1.6rem; margin-bottom: 1.2rem;
+    }
+    .card-block h4 { font-size: 1rem; font-weight: 600; margin-bottom: 0.2rem; font-family: 'DM Sans', sans-serif; }
+    .card-block .org { color: var(--accent); font-size: 0.85rem; font-weight: 500; margin-bottom: 0.2rem; }
+    .card-block .period { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 0.8rem; }
+    .card-block ul { padding-left: 1.1rem; color: var(--text-muted); font-size: 0.88rem; }
+    .card-block ul li { margin-bottom: 0.3rem; }
+
+    .tag {
+      display: inline-block; background: var(--tag-bg); color: var(--text-muted);
+      font-size: 0.72rem; padding: 0.18rem 0.55rem;
+      border-radius: 4px; margin: 0.15rem 0.1rem 0;
+    }
+
+    .badge-accent {
+      background: var(--accent-dim); color: var(--accent);
+      font-size: 0.72rem; padding: 0.18rem 0.6rem;
+      border-radius: 4px; font-weight: 600;
+    }
+
+    /* ── Home ────────────────────────────────────────────────── */
+    .home-hero { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2.5rem; }
+    .hero-greeting { font-size: 0.9rem; color: var(--accent); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+    .hero-name { font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.15; margin-bottom: 0.5rem; }
+    .hero-tagline { font-size: 1rem; color: var(--text-muted); max-width: 560px; }
+
+    .quick-links { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 1rem; }
+
+    .btn-accent {
+      background: var(--accent); color: #fff; border: none;
+      padding: 0.5rem 1.3rem; border-radius: 6px;
+      font-size: 0.85rem; font-weight: 600; cursor: pointer; text-decoration: none;
+    }
+    .btn-accent:hover { opacity: 0.9; color: #fff; text-decoration: none; }
+
+    .btn-outline-accent {
+      background: transparent; color: var(--accent);
+      border: 1.5px solid var(--accent); padding: 0.5rem 1.2rem;
+      border-radius: 6px; font-size: 0.85rem; font-weight: 600;
+      cursor: pointer; text-decoration: none;
+    }
+    .btn-outline-accent:hover { background: var(--accent-dim); color: var(--accent); text-decoration: none; }
+
+    .home-snapshot {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem;
+    }
+    .snap-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 1.2rem; text-align: center; }
+    .snap-card .snap-num { font-family: 'DM Serif Display', serif; font-size: 2.2rem; color: var(--accent); line-height: 1; }
+    .snap-card .snap-label { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.3rem; }
+
+    /* ── Education ───────────────────────────────────────────── */
+    .edu-degree { font-size: 1rem; font-weight: 700; margin-bottom: 0.1rem; font-family: 'DM Sans', sans-serif; }
+    .edu-meta { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.5rem 0; }
+    .edu-meta span { font-size: 0.8rem; color: var(--text-muted); }
+    .edu-meta strong { color: var(--text); }
+
+    /* ── Publication ─────────────────────────────────────────── */
+    .pub-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem; }
+    .pub-title { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.3rem; }
+    .pub-venue { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 0.6rem; font-style: italic; }
+    .pub-doi { font-size: 0.8rem; color: var(--text-muted); }
+
+    /* ── Contact ─────────────────────────────────────────────── */
+    .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+    .contact-item {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1.1rem 1.3rem;
+      display: flex; align-items: center; gap: 0.9rem;
+    }
+    .contact-icon {
+      width: 38px; height: 38px; border-radius: 8px;
+      background: var(--accent-dim); color: var(--accent);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.9rem; flex-shrink: 0;
+    }
+    .contact-label { font-size: 0.72rem; color: var(--text-muted); margin-bottom: 0.1rem; }
+    .contact-value { font-size: 0.88rem; font-weight: 500; }
+
+    /* ── References ──────────────────────────────────────────── */
+    .ref-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1.3rem 1.5rem; margin-bottom: 1rem;
+      display: flex; gap: 1rem; align-items: flex-start;
+    }
+    .ref-avatar {
+      width: 48px; height: 48px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--link));
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'DM Serif Display', serif; font-size: 1.1rem;
+      color: #fff; flex-shrink: 0;
+    }
+    .ref-name { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.15rem; font-family: 'DM Sans', sans-serif; }
+    .ref-role { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.3rem; }
+    .ref-rel { font-size: 0.78rem; color: var(--accent); font-weight: 600; margin-bottom: 0.4rem; }
+    .ref-email { font-size: 0.82rem; color: var(--text-muted); }
+
+    /* ── Awards ──────────────────────────────────────────────── */
+    .award-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 10px 10px 0;
+      padding: 1.1rem 1.4rem; margin-bottom: 1rem;
+    }
+    .award-title { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.2rem; font-family: 'DM Sans', sans-serif; }
+    .award-org { font-size: 0.8rem; color: var(--accent); margin-bottom: 0.3rem; }
+    .award-desc { font-size: 0.84rem; color: var(--text-muted); }
+
+    /* ── Skills grid ─────────────────────────────────────────── */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
+    .skill-cat { font-size: 0.8rem; font-weight: 700; color: var(--text); margin-bottom: 0.5rem; }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+
+    /* ── Mobile Header ───────────────────────────────────────── */
+    .mobile-header {
+      display: none;
+      background: var(--bg-sidebar);
+      border-bottom: 1px solid var(--border);
+      padding: 0.8rem 1rem;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky; top: 0; z-index: 99;
+    }
+    .mobile-header .mob-title { font-size: 0.95rem; font-weight: 700; }
+
+    /* ── Mobile Bottom Nav ───────────────────────────────────── */
+    .mobile-nav-bar {
+      display: none;
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: var(--bg-sidebar);
+      border-top: 1px solid var(--border);
+      z-index: 100; overflow-x: auto;
+    }
+    .mob-nav-inner { display: flex; min-width: max-content; }
+    .mob-nav-btn {
+      display: flex; flex-direction: column; align-items: center; gap: 0.2rem;
+      padding: 0.5rem 0.9rem; border: none; background: none;
+      color: var(--text-muted); font-size: 0.6rem; cursor: pointer; white-space: nowrap;
+    }
+    .mob-nav-btn i { font-size: 1rem; }
+    .mob-nav-btn.active { color: var(--accent); }
+
+    @media (max-width: 768px) {
+      .sidebar { display: none; }
+      .sidebar-footer { display: none; }
+      .mobile-nav-bar { display: flex; }
+      .main { padding: 1.5rem 1rem 5rem; max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="shell">
+
+  <!-- ════════ SIDEBAR ════════ -->
+  <aside class="sidebar">
+    <div class="sidebar-profile">
+      <div class="avatar-ring">MU</div>
+      <div class="sidebar-name">Maheen Unzeelah</div>
+      <div class="sidebar-tagline">Software Engineer</div>
+    </div>
+
+    <div class="sidebar-links">
+      <a href="mailto:maheenunzeelah@gmail.com"><i class="fa fa-envelope"></i> maheenunzeelah@gmail.com</a>
+      <a href="https://www.linkedin.com/in/maheen-unzeelah-667ba9194/" target="_blank"><i class="fab fa-linkedin"></i> linkedin-maheenunzeelah</a>
+      <a href="https://github.com/maheenunzeelah" target="_blank"><i class="fab fa-github"></i> github-maheenunzeelah</a>
+      <a href="https://scholar.google.com/citations?hl=en&user=PxsxyWYAAAAJ" target="_blank"><i class="fa fa-graduation-cap"></i> Google Scholar</a>
+      <!-- Phone number intentionally omitted: +92 313 282 6830 -->
+      <span style="font-size:0.75rem;color:var(--text-muted)"><i class="fa fa-map-marker-alt"></i> Karachi, Pakistan</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <button class="nav-item-btn active" data-section="home"><i class="fa fa-house"></i> Home</button>
+      <button class="nav-item-btn" data-section="experience"><i class="fa fa-briefcase"></i> Experience</button>
+      <button class="nav-item-btn" data-section="projects"><i class="fa fa-code"></i> Projects</button>
+      <button class="nav-item-btn" data-section="education"><i class="fa fa-graduation-cap"></i> Education</button>
+      <button class="nav-item-btn" data-section="publications"><i class="fa fa-file-alt"></i> Publications</button>
+      <button class="nav-item-btn" data-section="awards"><i class="fa fa-award"></i> Awards</button>
+      <button class="nav-item-btn" data-section="contact"><i class="fa fa-address-card"></i> Contact</button>
+      <button class="nav-item-btn" data-section="references"><i class="fa fa-users"></i> References</button>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="theme-toggle">
+        <i class="fa fa-moon" style="font-size:0.8rem"></i>
+        <button class="toggle-track" id="themeToggle" aria-label="Toggle theme">
+          <span class="toggle-thumb"></span>
+        </button>
+        <i class="fa fa-sun" style="font-size:0.8rem"></i>
+        <span id="themeLabel" style="margin-left:0.3rem">Dark</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ════════ MOBILE HEADER ════════ -->
+  <div class="mobile-header">
+    <span class="mob-title">Maheen Unzeelah</span>
+    <div class="theme-toggle">
+      <i class="fa fa-moon" style="font-size:0.75rem"></i>
+      <button class="toggle-track" id="themeToggleMob" aria-label="Toggle theme" style="width:34px;height:18px">
+        <span class="toggle-thumb" style="width:12px;height:12px;top:3px;left:3px"></span>
+      </button>
+      <i class="fa fa-sun" style="font-size:0.75rem"></i>
+    </div>
+  </div>
+
+  <!-- ════════ MAIN ════════ -->
+  <main class="main">
+
+    <!-- ── HOME ── -->
+    <section class="section-panel active" id="section-home">
+      <div class="home-hero">
+        <span class="hero-greeting">👋 Hello, I'm</span>
+        <h1 class="hero-name">Maheen<br/>Unzeelah</h1>
+        <p class="hero-tagline">
+          Software Engineer with expertise in Full-Stack Development. Currently building AI-driven fleet management systems at Motive.
+        </p>
+        <div class="quick-links">
+          <a class="btn-accent" href="mailto:maheenunzeelah@gmail.com">Get in Touch</a>
+          <a class="btn-outline-accent" href="https://github.com/maheenunzeelah" target="_blank">GitHub</a>
+          <a class="btn-outline-accent" href="https://scholar.google.com/citations?hl=en&user=PxsxyWYAAAAJ" target="_blank">Scholar</a>
+        </div>
+      </div>
+
+      <div class="home-snapshot">
+        <div class="snap-card">
+          <div class="snap-num">4+</div>
+          <div class="snap-label">Years of experience</div>
+        </div>
+        <div class="snap-card">
+          <div class="snap-num">1</div>
+          <div class="snap-label">Published paper · 8 citations</div>
+        </div>
+        <div class="snap-card">
+          <div class="snap-num">3.93</div>
+          <div class="snap-label">MS GPA / 4.00</div>
+        </div>
+        <div class="snap-card">
+          <div class="snap-num">🥈</div>
+          <div class="snap-label">Silver Medal — MS class</div>
+        </div>
+      </div>
+
+      <div class="card-block" style="margin-top:1.5rem">
+        <h4 style="margin-bottom:0.6rem">About Me</h4>
+        <p style="font-size:0.9rem;color:var(--text-muted)">
+          I hold a <strong style="color:var(--text)">Master of Data Science</strong> and a <strong style="color:var(--text)">Bachelor of Software Engineering</strong> from FAST-NUCES and NED University respectively.
+          My research centres on multimodal fake news detection, combining NLP, computer vision, external knowledge bases, and graph neural networks.
+          On the engineering side I've shipped full-stack products in FinTech, EdTech, fleet management, and sports analytics using Angular, React, .NET, and cloud-native architectures.
+        </p>
+      </div>
+
+      <div class="card-block">
+        <h4 style="margin-bottom:0.8rem">Key Skills</h4>
+        <div class="skills-grid">
+          <div>
+            <div class="skill-cat">Full-Stack Development</div>
+            <div class="skill-tags">
+              <span class="tag">Angular</span><span class="tag">React</span><span class="tag">React Native</span>
+              <span class="tag">.NET</span><span class="tag">ExpressJS</span><span class="tag">Redux</span>
+              <span class="tag">Solidity</span><span class="tag">SQL</span>
+            </div>
+          </div>
+          <div>
+            <div class="skill-cat">ML / DL / NLP</div>
+            <div class="skill-tags">
+              <span class="tag">PyTorch</span><span class="tag">TensorFlow</span><span class="tag">spaCy</span>
+              <span class="tag">BERT</span><span class="tag">CLIP</span><span class="tag">GNNs</span>
+              <span class="tag">Prompt Engineering</span>
+            </div>
+          </div>
+          <div>
+            <div class="skill-cat">Languages</div>
+            <div class="skill-tags">
+              <span class="tag">Python</span><span class="tag">TypeScript</span>
+              <span class="tag">JavaScript</span><span class="tag">C#</span>
+            </div>
+          </div>
+          <div>
+            <div class="skill-cat">Tools &amp; Platforms</div>
+            <div class="skill-tags">
+              <span class="tag">AWS Bedrock / Lambda / S3</span>
+              <span class="tag">Ethereum</span><span class="tag">IPFS</span>
+              <span class="tag">GitHub Actions</span><span class="tag">WebSockets</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── EXPERIENCE ── -->
+    <section class="section-panel" id="section-experience">
+      <h2 class="section-title">Work Experience</h2>
+      <div class="section-divider"></div>
+
+      <div class="card-block">
+        <div class="org">Motive — Karachi, Pakistan</div>
+        <h4>Software Engineer L3</h4>
+        <div class="period"><i class="fa fa-calendar" style="margin-right:4px"></i>Mar 2025 – Present</div>
+        <ul>
+          <li>Built the frontend of an AI-based driver-safety-focused fleet management system using Angular.</li>
+          <li>Integrated REST APIs to deliver real-time insights on drivers, assets, and vehicles.</li>
+          <li>Developed fleet admin settings for device controls (LED brightness, audio, language, camera recordings).</li>
+          <li>Implementing two-way communication between fleet managers and drivers using WebSockets.</li>
+          <li>Wrote unit tests using the Jasmine testing framework.</li>
+          <li>Authored technical design documentation for multiple features.</li>
+        </ul>
+        <div style="margin-top:0.7rem">
+          <span class="tag">Angular</span><span class="tag">WebSockets</span><span class="tag">REST APIs</span><span class="tag">Jasmine</span>
+        </div>
+      </div>
+
+      <div class="card-block">
+        <div class="org">Techlogix — Karachi, Pakistan</div>
+        <h4>Senior Software Engineer</h4>
+        <div class="period"><i class="fa fa-calendar" style="margin-right:4px"></i>Aug 2022 – Feb 2025</div>
+        <ul>
+          <li>Full-stack developer on <a href="https://www.adalfi.com/" target="_blank">Adalfi</a>, a FinTech product.</li>
+          <li>Built customer-journey modules using .NET and Angular for an AI-scorecard loan-eligibility system.</li>
+          <li>Built a foreign-currency exchange and remittance platform using Angular, TypeScript, and Kendo UI.</li>
+          <li>Developed a label and logo design tool for a global tech company using Angular and HTML Canvas.</li>
+          <li>Worked on a HXM tool in a microfrontend architecture using React, Redux, TypeScript, SCSS, Jest, and RTL.</li>
+          <li>Researched and implemented feature-flag solutions to improve CI/CD workflows in React applications.</li>
+          <!-- Commented out in original CV:
+          <li>Integrated REST APIs to display backend and SQL database data across multiple web modules.</li>
+          <li>Contributed to AI Hackathon enhancing UI workflows and automating API documentation via prompt engineering.</li>
+          <li>Explored canvas-based rendering patterns to support advanced visual features in Angular applications.</li>
+          -->
+        </ul>
+        <div style="margin-top:0.7rem">
+          <span class="tag">.NET</span><span class="tag">Angular</span><span class="tag">React</span>
+          <span class="tag">Redux</span><span class="tag">TypeScript</span><span class="tag">Kendo UI</span>
+          <span class="tag">HTML Canvas</span><span class="tag">SCSS</span>
+        </div>
+      </div>
+
+      <div class="card-block">
+        <div class="org">NUCES – FAST, Karachi, Pakistan</div>
+        <h4>Teaching Assistant — Deep Learning</h4>
+        <div class="period"><i class="fa fa-calendar" style="margin-right:4px"></i>Feb 2023 – Jun 2023</div>
+        <ul>
+          <li>Conducted deep learning labs; managed assignments, quizzes, and projects in the professor's absence.</li>
+          <li>Prepared and delivered lectures supporting lab content.</li>
+          <li>Evaluated assignments on logic gates in DL, NLP tasks, and TensorFlow-based LLM exercises.</li>
+          <li>Assessed and graded semester-long student projects.</li>
+        </ul>
+        <div style="margin-top:0.7rem">
+          <span class="tag">Deep Learning</span><span class="tag">TensorFlow</span><span class="tag">NLP</span><span class="tag">LLMs</span>
+        </div>
+      </div>
+
+      <div class="card-block">
+        <div class="org">433 / JOGO AI (via Cloud Primero B.V.) — Karachi, Pakistan</div>
+        <h4>Software Engineer</h4>
+        <div class="period"><i class="fa fa-calendar" style="margin-right:4px"></i>Dec 2020 – Dec 2021</div>
+        <ul>
+          <li>Developed a web-based dashboard for football trainers using React and Redux.</li>
+          <li>Enabled trainers to create clubs, teams, manage player profiles, and schedule events via training calendar.</li>
+          <li>Integrated APIs and converted Figma designs into a responsive, AI-driven analytics dashboard.</li>
+          <li>Built UI components to visualize exercise and performance data generated by AI models.</li>
+          <li>Developed both the React Native mobile app for players and the ReactJS web platform for trainers.</li>
+          <!-- Commented out in original CV:
+          <li>Wrote test cases to support QA processes and improve reliability.</li>
+          <li>Participated in requirement discussions, effort estimations, and bug-resolution meetings.</li>
+          -->
+        </ul>
+        <div style="margin-top:0.7rem">
+          <span class="tag">React</span><span class="tag">React Native</span>
+          <span class="tag">Redux</span><span class="tag">Figma</span><span class="tag">AI Analytics</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── PROJECTS ── -->
+    <section class="section-panel" id="section-projects">
+      <h2 class="section-title">Projects</h2>
+      <div class="section-divider"></div>
+
+      <p style="font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--accent);margin-bottom:0.8rem">Research Projects</p>
+
+      <div class="card-block">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.5rem">
+          <h4>Ensemble Multimodal Fake News Detection with Web3</h4>
+          <span class="badge-accent">MS Thesis</span>
+        </div>
+        <ul style="margin-top:0.6rem">
+          <li>Developed a multimodal fake news detection system integrating textual and visual analysis.</li>
+          <li>Utilized image captioning with DBPedia as external knowledge base and OCR to extract text from images.</li>
+          <li>Applied FaceNet and SVC for facial recognition to detect person entities and generate entity-specific captions.</li>
+          <li>Employed abstractive summarization to condense news articles.</li>
+          <li>Used ensemble learning to combine multimodal predictions for balanced detection.</li>
+          <li>Implemented Ethereum Blockchain with off-chain storage for decentralized news tracking and enhanced security.</li>
+        </ul>
+        <div style="margin-top:0.7rem">
+          <span class="tag">Multimodal ML</span><span class="tag">NLP</span><span class="tag">Computer Vision</span>
+          <span class="tag">Ethereum</span><span class="tag">Blockchain</span>
+        </div>
+      </div>
+
+      <div class="card-block">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.5rem">
+          <h4>EMGFND — External Multimodal Graph-based Fake News Detection</h4>
+          <a href="https://github.com/maheenunzeelah/EMGFND" target="_blank" class="badge-accent" style="text-decoration:none">GitHub</a>
+        </div>
+        <ul style="margin-top:0.6rem">
+          <li>Developed a multimodal graph-based fake news detection framework with external knowledge integration.</li>
+          <li>Integrated TagMe and NER for entity linking and image retrieval from Wikimedia.</li>
+          <li>Applied OCR and sentence-level embeddings for cross-modal alignment in long articles.</li>
+          <li>Coreference resolution to improve entity linking; BERT extractive summarization for long articles.</li>
+          <li>Focal loss for imbalanced datasets; CLIP for text and image embeddings.</li>
+          <li>Heterogeneous graph combining textual, visual, and OCR nodes.</li>
+        </ul>
+        <div style="margin-top:0.7rem">
+          <span class="tag">GNN</span><span class="tag">CLIP</span><span class="tag">BERT</span>
+          <span class="tag">NER</span><span class="tag">OCR</span><span class="tag">Knowledge Graphs</span>
+        </div>
+      </div>
+
+      <p style="font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--accent);margin-bottom:0.8rem;margin-top:1.5rem">Technical Projects</p>
+      <div class="card-block">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.5rem">
+          <h4>AI Enhanced Pull Request Reviewer</h4>
+          <span class="badge-accent">Hackathon</span>
+        </div>
+        <ul style="margin-top:0.6rem">
+          <li>Developed an AI-driven PR reviewer using Claude via Amazon Bedrock.</li>
+          <li>Automated code quality checks and best practice validation.</li>
+          <li>Generated structured JSON feedback with line numbers and suggestions.</li>
+          <li>Integrated GitHub workflows and AWS Lambda for real-time automation.</li>
+          <li>Built S3-based knowledge repositories for context-aware LLM evaluation.</li>
+        </ul>
+        <div style="margin-top:0.7rem">
+          <span class="tag">Claude / Bedrock</span><span class="tag">LLMs</span><span class="tag">AWS Lambda</span>
+          <span class="tag">GitHub Actions</span><span class="tag">Prompt Engineering</span>
+        </div>
+      </div>
+      <div class="card-block">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.5rem">
+          <h4>Smart API Detection and Personalized UI</h4>
+          <a href="https://github.com/maheenunzeelah/-Smart-API-Detection-and-Personalized-UI-" target="_blank" class="badge-accent" style="text-decoration:none">GitHub · Hackfinity</a>
+        </div>
+        <ul style="margin-top:0.6rem">
+          <li>Built a system to detect UI elements from images and generate HTML/CSS using GPT-3 APIs.</li>
+          <li>Used DALL-E 2 and DALL-E 3 for personalized UI design generation from text prompts.</li>
+          <li>Processed user requirements to extract API endpoints and methods via GPT API.</li>
+          <li>Enabled JSON API documentation downloads and UI preview export.</li>
+        </ul>
+        <div style="margin-top:0.7rem">
+          <span class="tag">GPT-3</span><span class="tag">DALL-E</span><span class="tag">Prompt Engineering</span><span class="tag">HTML/CSS</span>
+        </div>
+      </div>
+      <div class="card-block">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.5rem">
+          <h4>Multi-Container Cloud Deployment Pipeline</h4>
+           <a href="https://github.com/maheenunzeelah/-Smart-API-Detection-and-Personalized-UI-" target="_blank" class="badge-accent" style="text-decoration:none">GitHub · MS Project</a>
+        </div>
+        <ul style="margin-top:0.6rem">
+          <li>Containerized and deployed a Todo web application to AWS Elastic Beanstalk using Docker to achieve fast, consistent, and error-free deployment across any environment.</li>
+          <li>Designed a microservices architecture with React frontend, Node.js backend, Redis, and Nginx as a reverse proxy.</li>
+          <li>Setup CI/CD pipeline using GitHub Actions to build and push Docker images to Docker Hub on every commit.</li>
+          <li> Managed separate development and production environments using Docker Compose and AWS Dockerrun configuration.</li>
+        </ul>
+        <div style="margin-top:0.7rem">
+          <span class="tag">Claude / Bedrock</span><span class="tag">LLMs</span><span class="tag">AWS Lambda</span>
+          <span class="tag">GitHub Actions</span><span class="tag">Prompt Engineering</span>
+        </div>
+      </div>
+      <div class="card-block">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.5rem">
+          <h4>Vaccine Distribution DApp</h4>
+          <a href="https://github.com/maheenunzeelah/vaccine-dapp" target="_blank" class="badge-accent" style="text-decoration:none">GitHub · MS Project</a>
+        </div>
+        <ul style="margin-top:0.6rem">
+          <li>Developed an Ethereum-based DApp for COVID-19 vaccine supply chain tracking.</li>
+          <li>Implemented role-based smart contracts for manufacturer, distributor, container, and vaccination centre using Solidity.</li>
+          <li>Enabled violation logging (temperature/light exposure) and real-time status monitoring.</li>
+          <li>Built frontend with Truffle React Box and Material UI; integrated Metamask and Ganache for local testing.</li>
+        </ul>
+        <div style="margin-top:0.7rem">
+          <span class="tag">Ethereum</span><span class="tag">Solidity</span><span class="tag">Web3</span>
+          <span class="tag">React</span><span class="tag">Truffle</span>
+        </div>
+      </div>
+
+      <div class="card-block">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.5rem">
+          <h4>E-Catechism — Online AI-Driven Examination Webapp</h4>
+          <a href="https://github.com/maheenunzeelah/E-Catechism" target="_blank" class="badge-accent" style="text-decoration:none">GitHub · BE FYP</a>
+        </div>
+        <ul style="margin-top:0.6rem">
+          <li>Built a secure online testing platform using the MERN stack and ML.</li>
+          <li>Implemented facial recognition and GMM-based speaker recognition to verify student identity.</li>
+          <li>Automated result generation for objective questions (MCQs, T/F).</li>
+          <li>CRUD features for teachers and students via ReactJS; APIs via ExpressJS; MongoDB as NoSQL DB.</li>
+        </ul>
+        <div style="margin-top:0.7rem">
+          <span class="tag">MERN</span><span class="tag">Facial Recognition</span><span class="tag">GMM</span><span class="tag">ReactJS</span>
+        </div>
+      </div>
+
+      <div class="card-block">
+        <h4>Drag-n-Drop Canvas — Logo &amp; Label Designer</h4>
+        <div class="period">Techlogix Professional Project</div>
+        <ul style="margin-top:0.4rem">
+          <li>Developed responsive canvas interfaces for dragging, dropping, and manipulating objects.</li>
+          <li>Managed events, rendering, and object layering for smooth performance.</li>
+          <li>Implemented using Angular and the Konva library for canvas functionality.</li>
+        </ul>
+        <div style="margin-top:0.7rem">
+          <span class="tag">Angular</span><span class="tag">Konva</span><span class="tag">HTML Canvas</span>
+        </div>
+      </div>
+
+      <div class="card-block">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.5rem">
+          <h4>Visitor Management System</h4>
+          <a href="https://github.com/maheenunzeelah/Visitors-Management-System" target="_blank" class="badge-accent" style="text-decoration:none">GitHub · BE Project</a>
+        </div>
+        <ul style="margin-top:0.6rem">
+          <li>Developed a C# Windows Forms application to maintain records of visitors and students.</li>
+          <li>Implemented a secure login form and dedicated visitor management form.</li>
+          <li>Integrated Crystal Reports to visualize and generate visitor record summaries.</li>
+        </ul>
+        <div style="margin-top:0.7rem">
+          <span class="tag">C#</span><span class="tag">Windows Forms</span><span class="tag">Crystal Reports</span>
+        </div>
+      </div>
+
+      <div class="card-block">
+        <h4>CowasJee School Website</h4>
+        <div class="period">BE Semester Project</div>
+        <ul style="margin-top:0.4rem">
+          <li>Developed school website (Homepage, Admission, FAQ) using HTML, CSS, JavaScript, Bootstrap.</li>
+          <li>Built a school management system with student, teacher, and admin modules using CodeIgniter (PHP) and MySQL.</li>
+          <li>Implemented attendance tracking, exam results, report generation, and syllabus management.</li>
+          <li>Created an admin dashboard for centralized control with role-based authentication.</li>
+        </ul>
+        <div style="margin-top:0.7rem">
+          <span class="tag">PHP</span><span class="tag">CodeIgniter</span><span class="tag">MySQL</span><span class="tag">Bootstrap</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── EDUCATION ── -->
+    <section class="section-panel" id="section-education">
+      <h2 class="section-title">Education</h2>
+      <div class="section-divider"></div>
+
+      <div class="card-block">
+        <span class="badge-accent" style="margin-bottom:0.5rem;display:inline-block">Sep 2021 – Aug 2023</span>
+        <div class="edu-degree">Master of Data Science</div>
+        <div class="org">National University of Computer and Emerging Sciences (FAST), Karachi, Pakistan</div>
+        <div class="edu-meta">
+          <span>GPA: <strong>3.93 / 4.00 (~98%)</strong></span>
+          <span>·</span>
+          <span>Major GPA: <strong>4.00 / 4.00</strong></span>
+          <span>·</span>
+          <span>Thesis GPA: <strong>4.00 / 4.00</strong></span>
+        </div>
+        <div style="font-size:0.85rem;color:var(--text-muted);margin-top:0.3rem">
+          <strong style="color:var(--text)">Thesis:</strong> Ensemble Multimodal Fake News Detection with Web3<br/>
+          <strong style="color:var(--text)">Supervisor:</strong> Prof. Dr. Zulfiqar A. Memon
+        </div>
+        <div style="margin-top:0.6rem">
+          <span class="badge-accent">🥈 Silver Medal — 2nd in Graduating Class (2023)</span>
+        </div>
+      </div>
+
+      <div class="card-block">
+        <span class="badge-accent" style="margin-bottom:0.5rem;display:inline-block">Dec 2016 – Oct 2020</span>
+        <div class="edu-degree">Bachelor of Engineering (Software Engineering)</div>
+        <div class="org">NED University of Engineering and Technology, Karachi, Pakistan</div>
+        <div class="edu-meta">
+          <span>GPA: <strong>3.54 / 4.00 (~88.5%)</strong></span>
+          <span>·</span>
+          <span>Project GPA: <strong>3.66 / 4.00</strong></span>
+        </div>
+        <div style="font-size:0.85rem;color:var(--text-muted);margin-top:0.3rem">
+          <strong style="color:var(--text)">Final Year Project:</strong> E-Catechism<br/>
+          <strong style="color:var(--text)">Advisor:</strong> Prof. Dr. Muhammad Mubashir Khan
+        </div>
+      </div>
+    </section>
+
+    <!-- ── PUBLICATIONS ── -->
+    <section class="section-panel" id="section-publications">
+      <h2 class="section-title">Publications</h2>
+      <div class="section-divider"></div>
+
+      <p style="font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--accent);margin-bottom:0.8rem">Conference Papers</p>
+
+      <div class="card-block">
+        <div class="pub-label">C.1 · IEEE Conference · 8 Citations</div>
+        <div class="pub-title">
+          <a href="https://doi.org/10.1109/ICETST55735.2022.9922927" target="_blank">
+            Fighting Against Fake News by Connecting Machine Learning Approaches with Web3
+          </a>
+        </div>
+        <div class="pub-venue">
+          <strong>Maheen Unzeelah</strong>, Zulfiqar Ali Memon ·
+          2022 International Conference on Emerging Trends in Smart Technologies (ICETST), IEEE · Karachi, Pakistan · Sep 23–24, 2022
+        </div>
+        <div class="pub-doi">DOI: 10.1109/ICETST55735.2022.9922927 · ISBN: 978-1-6654-5935-8</div>
+        <ul style="margin-top:0.7rem;font-size:0.84rem">
+          <li>Led 75% of the research, including methodology design, ML-blockchain integration, and writing.</li>
+          <li>Used TF-IDF Vectorization for cosine similarity between news text and headline.</li>
+          <li>Classification using KNN, Multinomial NB, and LSTM with GloVe and Word2Vec embeddings.</li>
+          <li>Implemented role-based access control using Ethereum smart contracts.</li>
+          <li>Stored news data off-chain using IPFS, with content hashes recorded on-chain.</li>
+        </ul>
+        <div style="margin-top:0.7rem">
+          <span class="tag">TF-IDF</span><span class="tag">KNN</span><span class="tag">LSTM</span>
+          <span class="tag">GloVe</span><span class="tag">Ethereum</span><span class="tag">IPFS</span>
+        </div>
+      </div>
+<!-- 
+      <p style="font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--accent);margin-bottom:0.8rem;margin-top:1.5rem">
+        Unpublished Work <span style="color:var(--text-muted);font-weight:400;font-size:0.75rem">(In progre)</span>
+      </p> -->
+
+    </section>
+
+    <!-- ── AWARDS ── -->
+    <section class="section-panel" id="section-awards">
+      <h2 class="section-title">Honors &amp; Awards</h2>
+      <div class="section-divider"></div>
+
+      <div class="award-card">
+        <div class="award-title">🥈 Silver Medal — Master of Data Science</div>
+        <div class="award-org">National University of Computer and Emerging Sciences (FAST) · 2023</div>
+        <div class="award-desc">Awarded for ranking 2nd in the graduating class of the MS Data Science program.</div>
+      </div>
+
+      <div class="award-card">
+        <div class="award-title">🏅 Participation Certificate — AI Hackathon</div>
+        <div class="award-org">Techlogix · 2024</div>
+        <div class="award-desc">Developed an LLM-powered solution to improve UI designs and generate comprehensive API documentation using prompt engineering to streamline the design process and enhance developer resources.</div>
+      </div>
+
+      <div class="award-card">
+        <div class="award-title">📄 Appreciation Certificate — ICETST Conference</div>
+        <div class="award-org">National University of Computer and Emerging Sciences (FAST) · 2022</div>
+        <div class="award-desc">Recognized for presenting "Fighting Against Fake News by Connecting Machine Learning Approaches with Web3" at the International Conference on Emerging Technologies in Science and Technology.</div>
+      </div>
+
+      <div class="award-card">
+        <div class="award-title">🎓 Teaching Assistant Certificate — Deep Learning</div>
+        <div class="award-org">National University of Computer and Emerging Sciences (FAST) · 2023</div>
+        <div class="award-desc">Awarded for outstanding dedication as a TA, including conducting deep learning labs, grading assignments, checking projects, and delivering lectures.</div>
+      </div>
+    </section>
+
+    <!-- ── CONTACT ── -->
+    <section class="section-panel" id="section-contact">
+      <h2 class="section-title">Contact</h2>
+      <div class="section-divider"></div>
+
+      <!-- Phone number intentionally omitted from public portfolio per user request.
+           Original number from CV: +92 313 282 6830 -->
+
+      <div class="contact-grid">
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fa fa-envelope"></i></div>
+          <div>
+            <div class="contact-label">Email</div>
+            <div class="contact-value"><a href="mailto:maheenunzeelah@gmail.com">maheenunzeelah@gmail.com</a></div>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fa fa-map-marker-alt"></i></div>
+          <div>
+            <div class="contact-label">Location</div>
+            <div class="contact-value">Karachi, Pakistan</div>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fab fa-linkedin"></i></div>
+          <div>
+            <div class="contact-label">LinkedIn</div>
+            <div class="contact-value"><a href="https://www.linkedin.com/in/maheen-unzeelah-667ba9194/" target="_blank">linkedin-maheenunzeelah</a></div>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fab fa-github"></i></div>
+          <div>
+            <div class="contact-label">GitHub</div>
+            <div class="contact-value"><a href="https://github.com/maheenunzeelah" target="_blank">github-maheenunzeelah</a></div>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fa fa-graduation-cap"></i></div>
+          <div>
+            <div class="contact-label">Google Scholar</div>
+            <div class="contact-value"><a href="https://scholar.google.com/citations?hl=en&user=PxsxyWYAAAAJ" target="_blank">googlescholar-maheenunzeelah</a></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-block">
+        <h4 style="margin-bottom:0.5rem">Open To</h4>
+        <p style="font-size:0.88rem;color:var(--text-muted)">
+          I'm open to research collaborations and interesting engineering roles. Feel free to reach out via email or LinkedIn.
+        </p>
+      </div>
+    </section>
+
+    <!-- ── REFERENCES ── -->
+    <section class="section-panel" id="section-references">
+      <h2 class="section-title">Academic Referees</h2>
+      <div class="section-divider"></div>
+
+      <!-- Phone numbers intentionally omitted for all referees per user request. -->
+
+      <div class="ref-card">
+        <div class="ref-avatar">ZM</div>
+        <div>
+          <div class="ref-name">
+            <a href="https://scholar.google.com/citations?user=y61d2CsAAAAJ&hl=en" target="_blank">Prof. Dr. Zulfiqar Ali Memon, PhD</a>
+          </div>
+          <div class="ref-role">Professor &amp; Director, Department of Computer Science<br/>National University of Computer and Emerging Sciences – FAST</div>
+          <div class="ref-rel">Thesis Supervisor</div>
+          <div class="ref-email"><i class="fa fa-envelope" style="margin-right:4px;font-size:0.75rem"></i>
+            <a href="mailto:zulfiqar.memon@nu.edu.pk">zulfiqar.memon@nu.edu.pk</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="ref-card">
+        <div class="ref-avatar">AT</div>
+        <div>
+          <div class="ref-name">
+            <a href="https://scholar.google.com/citations?user=tBKYSE0AAAAJ&hl=en" target="_blank">Dr. Muhammad Atif Tahir, PhD</a>
+          </div>
+          <div class="ref-role">Professor &amp; Program Coordinator, Department of Computer Science<br/>Institute of Business Administration (IBA)</div>
+          <div class="ref-rel">Master's Lecturer</div>
+          <div class="ref-email"><i class="fa fa-envelope" style="margin-right:4px;font-size:0.75rem"></i>
+            <a href="mailto:atiftahir@iba.edu.pk">atiftahir@iba.edu.pk</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="ref-card">
+        <div class="ref-avatar">MK</div>
+        <div>
+          <div class="ref-name">
+            <a href="https://scholar.google.com/citations?user=5NFQsS0AAAAJ&hl=en" target="_blank">Prof. Dr. Muhammad Mubashir Khan, PhD</a>
+          </div>
+          <div class="ref-role">Professor &amp; Chairman, Department of Computer Science &amp; IT<br/>NED University of Engineering &amp; Technology</div>
+          <div class="ref-rel">Bachelor's FYP Advisor</div>
+          <div class="ref-email"><i class="fa fa-envelope" style="margin-right:4px;font-size:0.75rem"></i>
+            <a href="mailto:mmkhan@neduet.edu.pk">mmkhan@neduet.edu.pk</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- ════════ MOBILE BOTTOM NAV ════════ -->
+<nav class="mobile-nav-bar">
+  <div class="mob-nav-inner">
+    <button class="mob-nav-btn active" data-section="home"><i class="fa fa-house"></i>Home</button>
+    <button class="mob-nav-btn" data-section="experience"><i class="fa fa-briefcase"></i>Experience</button>
+    <button class="mob-nav-btn" data-section="projects"><i class="fa fa-code"></i>Projects</button>
+    <button class="mob-nav-btn" data-section="education"><i class="fa fa-graduation-cap"></i>Education</button>
+    <button class="mob-nav-btn" data-section="publications"><i class="fa fa-file-alt"></i>Publications</button>
+    <button class="mob-nav-btn" data-section="awards"><i class="fa fa-award"></i>Awards</button>
+    <button class="mob-nav-btn" data-section="contact"><i class="fa fa-address-card"></i>Contact</button>
+    <button class="mob-nav-btn" data-section="references"><i class="fa fa-users"></i>References</button>
+    <button class="mob-nav-btn" id="mobThemeToggleBtn" style="border: none; background: none; padding: 0.5rem 0.6rem;"><i class="fa fa-circle-half-stroke"></i><span id="mobile-toggle-label"></span></button>
+  </div>
+</nav>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+<script>
+  // ── Tab Navigation ──────────────────────────────────────────
+  const allNavBtns = document.querySelectorAll('[data-section]');
+
+  allNavBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = btn.dataset.section;
+      document.querySelectorAll('.section-panel').forEach(p => p.classList.remove('active'));
+      allNavBtns.forEach(b => b.classList.remove('active'));
+      document.getElementById('section-' + target).classList.add('active');
+      document.querySelectorAll(`[data-section="${target}"]`).forEach(b => b.classList.add('active'));
+      document.querySelector('.main').scrollTop = 0;
+    });
+  });
+
+  // ── Theme Toggle ────────────────────────────────────────────
+  function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    const label = document.getElementById('themeLabel');
+    const mobile_label = document.getElementById('mobile-toggle-label');
+    if (label) label.textContent = theme === 'dark' ? 'Dark' : 'Light';
+    if (mobile_label) mobile_label.textContent = theme === 'dark' ? 'Dark' : 'Light';
+    localStorage.setItem('portfolio-theme', theme);
+  }
+
+  function toggleTheme() {
+    const current = document.documentElement.getAttribute('data-theme');
+    applyTheme(current === 'dark' ? 'light' : 'dark');
+  }
+
+  document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+  document.getElementById('themeToggleMob').addEventListener('click', toggleTheme);
+  const mobThemeBtn = document.getElementById('mobThemeToggleBtn');
+  if (mobThemeBtn) mobThemeBtn.addEventListener('click', toggleTheme);
+
+  // Restore saved theme on load
+  const saved = localStorage.getItem('portfolio-theme');
+  if (saved) applyTheme(saved);
+</script>
+</body>
+</html>
